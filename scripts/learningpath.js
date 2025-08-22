@@ -8,11 +8,11 @@ let learningPath = {
     learningPath.setLang();
     learningPath.setFormat();
     //select correct json file
-    let title = document.title.toUpperCase()
+    let title = document.title.toUpperCase();
     let jsonFile;
- 
+
     //using indexOf() since IE doesn't support includes(), returns -1 if not found
-    if(title.indexOf('DOCUMENT') !== -1 || title.indexOf('DOCUMENTS') !== -1){
+    if (title.indexOf("DOCUMENT") !== -1 || title.indexOf("DOCUMENTS") !== -1) {
       jsonFile = "document-auditor-learning-path.json";
     } else if (title.indexOf("WEB") !== -1) {
       jsonFile = "web-auditor-learning-path.json";
@@ -20,10 +20,7 @@ let learningPath = {
       jsonFile = null;
     }
     //end selection
-    learningPath.getRemoteFile(
-      jsonFile,
-      learningPath.startDrawing
-    );
+    learningPath.getRemoteFile(jsonFile, learningPath.startDrawing);
   }, // End of init
 
   startDrawing: function (doc) {
@@ -95,25 +92,25 @@ let learningPath = {
   }, // End of doc
   createOptionsList: function (container) {
     //returns -1 if not found
-    if(window.location.search.indexOf("?format=") !== -1){
-    let p = learningPath.createHTMLElement(document, "p", {
-      parentNode: container,
-      textNode: "View as:",
-    });
-    let ul = learningPath.createHTMLElement(document, "ul", {
-      parentNode: container,
-    });
-    let types = ["table", "list", "headings", "cards"];
-    for (let i = 0; i < types.length; i++) {
-      let li = learningPath.createHTMLElement(document, "li", {
-        parentNode: ul,
+    if (window.location.search.indexOf("?format=") !== -1) {
+      let p = learningPath.createHTMLElement(document, "p", {
+        parentNode: container,
+        textNode: "View as:",
       });
-      let a = learningPath.createHTMLElement(document, "a", {
-        parentNode: li,
-        href: document.location.pathname + "?format=" + types[i],
-        textNode: types[i].charAt(0).toUpperCase() + types[i].slice(1),
+      let ul = learningPath.createHTMLElement(document, "ul", {
+        parentNode: container,
       });
-    }
+      let types = ["table", "list", "headings", "cards"];
+      for (let i = 0; i < types.length; i++) {
+        let li = learningPath.createHTMLElement(document, "li", {
+          parentNode: ul,
+        });
+        let a = learningPath.createHTMLElement(document, "a", {
+          parentNode: li,
+          href: document.location.pathname + "?format=" + types[i],
+          textNode: types[i].charAt(0).toUpperCase() + types[i].slice(1),
+        });
+      }
     }
   }, // End of createOptionsList
   drawTables: function (container, metadata, courses) {
@@ -409,7 +406,7 @@ let learningPath = {
           re,
           '<a href="' +
             url +
-            '" rel="noreferrer noopener" target="_blank">' +
+            '" rel="noreferrer noopener" target="_blank" rel="noopener">' +
             lt +
             "</a>"
         );

@@ -3,12 +3,12 @@ const MAX_SUMMARY_LENGTH = 100;
 const SENTENCE_BOUNDARY_REGEX = /\b\.\s/gm;
 const WORD_REGEX = /\b(\w*)[\W|\s|\b]?/gm;
 var results;
-//we need to create an JSON index file which will have all the page data without html tags 
+//we need to create an JSON index file which will have all the page data without html tags
 
+if (performance.navigation.type == performance.navigation.TYPE_RELOAD) {
+  //remove params on reload
 
-if (performance.navigation.type == performance.navigation.TYPE_RELOAD) { //remove params on reload
-
-    window.location = location.href.split('?')[0];
+  window.location = location.href.split("?")[0];
 }
 
 async function initSearchIndex() {
@@ -26,9 +26,8 @@ async function initSearchIndex() {
   }
 }
 
-
 function displayErrorMessage(message) {
-	document.getElementById("results-header").classList.add("hidden");
+  document.getElementById("results-header").classList.add("hidden");
   document.querySelector(".search-error-message").innerHTML = message;
   document.querySelector(".search-error").classList.remove("hidden");
 }
@@ -56,27 +55,26 @@ function getSearchResults(query) {
 function getLunrSearchQuery(query) {
   const searchTerms = query.split(" ");
   if (searchTerms.length === 1) {
-	  query = "+" + query;
-	  console.log(query);
+    query = "+" + query;
+    console.log(query);
     return query;
   }
   query = "";
   var op = "+";
   for (const term of searchTerms) {
-	  if(term == "OR"){
-		  op = " ";
-	  }
-	  console.log(op);
-	  if(term != "AND" && term != "OR"){
-		  query += op + `${term} `;
-	  }
+    if (term == "OR") {
+      op = " ";
+    }
+    console.log(op);
+    if (term != "AND" && term != "OR") {
+      query += op + `${term} `;
+    }
   }
   return query.trim();
 }
 
 function renderSearchResults(query, results, lang, page) {
-
-  document.getElementById("search").value = query;	
+  document.getElementById("search").value = query;
   clearSearchResults();
   updateSearchResults(query, results, lang, page);
   showSearchResults();
@@ -89,83 +87,156 @@ function clearSearchResults() {
 }
 
 function updateSearchResults(query, results, lang, page) {
-	var prev_lbl ="Previous";
-	var next_lbl = "Next";
-	var form_nm = "search_form";
-	var in_lbl = "In";
-	
-	if(lang == "fr"){
-		prev_lbl = "Précédent";
-		next_lbl = "Suivant";
-		form_nm = "search_form-fr";
-		in_lbl = "Dans";
-	}
-	const paginationSize = document.getElementById("pagination_size").value;
-	var listHtml ="";
-	const totalPages = Math.ceil(results.length/paginationSize);
-	if(page == undefined)
-		page = 1;
-	else
-		page = parseInt(page);
-	//build the pagination bar
-	if(results.length > 11){
-	var htmlStringPagination = ' <nav role="navigation" aria-labelledby="nav-pagination"> <h2 id="nav-pagination" class="wb-inv">Pagination menu</h2><ul class="pagination">';
-	if(page > 1)
-		 htmlStringPagination += '<li><a href="'+form_nm+'.html?q='+query+'&page='+(page-1)+'&lang='+lang+'" rel="prev">'+prev_lbl+'</a></li>'
-	for (let i = 0; i < totalPages; i++) {
-		if(i+1 == page)
-			htmlStringPagination += '<li class="active"><a href="'+form_nm+'.html?q='+query+'&page='+(i+1)+'&lang='+lang+' " >'+(i+1)+'<span class="wb-inv">Go to Page '+(i+1)+'</span></a>';
-		else
-			htmlStringPagination += '<li><a href="'+form_nm+'.html?q='+query+'&page='+(i+1)+'&lang='+lang+' ">'+(i+1)+' <span class="wb-inv">Go to Page '+(i+1)+'</span></a>';
-	}
-	if(page != totalPages)
-		htmlStringPagination += ' <li><a href="'+form_nm+'.html?q='+query+'&page='+(page+1)+'&lang='+lang+'"rel="next">'+next_lbl+'</a></li>'
-	htmlStringPagination += '</ul></nav>';
-	document.getElementById("results-pagination").innerHTML = htmlStringPagination;
-	} else{
-		document.getElementById("results_paginator_prompt").classList.add("hidden");
-	}
-	//build the results
-	if( results.length == 1){
-		Object.entries(results).forEach((hit,keys)=>{
-		 document.querySelector(".search-results ol").start = 1;
-		  document.querySelector(".search-results ol").innerHTML += `
-		<li class="search-result-item" data-score="`+ hit[1].score.toFixed(2)+`">
-		  <a href="`+hit[1].href+`" target="_blank" class="search-result-page-title">`+hit[1].heading+`</a>
-		  <p><small>`+in_lbl+` <i>`+hit[1].title+`</i></small></p>
-		  <p>`+createSearchResultBlurb(query, hit[1].content)+`</p>
-		</li>
-		`;
-		})
-		document.getElementById("results-count").innerHTML = 1;
-	  document.getElementById("results-count-text").innerHTML = "result";
-	  document.getElementById("pagination-count").innerHTML = 1;
-	  document.getElementById("pagination-from").innerHTML = 1;
-		
-	}else{
-   const last_page= Math.ceil(results.length / paginationSize);
-   const from= ((page - 1) * paginationSize) + 1;
-   var to = page * paginationSize;
-   if(to > results.length)
-	   to = results.length-1;
-	
-	Object.entries(results).slice(from,to+1).forEach((hit,keys)=>{
-		 document.querySelector(".search-results ol").start = from;
-		  document.querySelector(".search-results ol").innerHTML += `
-		<li class="search-result-item" data-score="`+ hit[1].score.toFixed(2)+`">
-		  <a href="`+hit[1].href+`" target="_blank" class="search-result-page-title">`+hit[1].heading+`</a>
-		  <p><small>`+in_lbl+`  <i>`+hit[1].title+`</i></small></p>
-		  <p>`+createSearchResultBlurb(query, hit[1].content)+`</p>
-		</li>
-		`;
-		});
-		document.getElementById("results-count").innerHTML = results.length-1;
-	  document.getElementById("results-count-text").innerHTML = results.length > 1 ? "results" : "result";
-	  document.getElementById("pagination-count").innerHTML = to;
-	  document.getElementById("pagination-from").innerHTML = from;
-	}
+  var prev_lbl = "Previous";
+  var next_lbl = "Next";
+  var form_nm = "search_form";
+  var in_lbl = "In";
 
-	
+  if (lang == "fr") {
+    prev_lbl = "Précédent";
+    next_lbl = "Suivant";
+    form_nm = "search_form-fr";
+    in_lbl = "Dans";
+  }
+  const paginationSize = document.getElementById("pagination_size").value;
+  var listHtml = "";
+  const totalPages = Math.ceil(results.length / paginationSize);
+  if (page == undefined) page = 1;
+  else page = parseInt(page);
+  //build the pagination bar
+  if (results.length > 11) {
+    var htmlStringPagination =
+      ' <nav role="navigation" aria-labelledby="nav-pagination"> <h2 id="nav-pagination" class="wb-inv">Pagination menu</h2><ul class="pagination">';
+    if (page > 1)
+      htmlStringPagination +=
+        '<li><a href="' +
+        form_nm +
+        ".html?q=" +
+        query +
+        "&page=" +
+        (page - 1) +
+        "&lang=" +
+        lang +
+        '" rel="prev">' +
+        prev_lbl +
+        "</a></li>";
+    for (let i = 0; i < totalPages; i++) {
+      if (i + 1 == page)
+        htmlStringPagination +=
+          '<li class="active"><a href="' +
+          form_nm +
+          ".html?q=" +
+          query +
+          "&page=" +
+          (i + 1) +
+          "&lang=" +
+          lang +
+          ' " >' +
+          (i + 1) +
+          '<span class="wb-inv">Go to Page ' +
+          (i + 1) +
+          "</span></a>";
+      else
+        htmlStringPagination +=
+          '<li><a href="' +
+          form_nm +
+          ".html?q=" +
+          query +
+          "&page=" +
+          (i + 1) +
+          "&lang=" +
+          lang +
+          ' ">' +
+          (i + 1) +
+          ' <span class="wb-inv">Go to Page ' +
+          (i + 1) +
+          "</span></a>";
+    }
+    if (page != totalPages)
+      htmlStringPagination +=
+        ' <li><a href="' +
+        form_nm +
+        ".html?q=" +
+        query +
+        "&page=" +
+        (page + 1) +
+        "&lang=" +
+        lang +
+        '"rel="next">' +
+        next_lbl +
+        "</a></li>";
+    htmlStringPagination += "</ul></nav>";
+    document.getElementById("results-pagination").innerHTML =
+      htmlStringPagination;
+  } else {
+    document.getElementById("results_paginator_prompt").classList.add("hidden");
+  }
+  //build the results
+  if (results.length == 1) {
+    Object.entries(results).forEach((hit, keys) => {
+      document.querySelector(".search-results ol").start = 1;
+      document.querySelector(".search-results ol").innerHTML +=
+        `
+		<li class="search-result-item" data-score="` +
+        hit[1].score.toFixed(2) +
+        `">
+		  <a href="` +
+        hit[1].href +
+        `" target="_blank" rel="noopener" class="search-result-page-title">` +
+        hit[1].heading +
+        `</a>
+		  <p><small>` +
+        in_lbl +
+        ` <i>` +
+        hit[1].title +
+        `</i></small></p>
+		  <p>` +
+        createSearchResultBlurb(query, hit[1].content) +
+        `</p>
+		</li>
+		`;
+    });
+    document.getElementById("results-count").innerHTML = 1;
+    document.getElementById("results-count-text").innerHTML = "result";
+    document.getElementById("pagination-count").innerHTML = 1;
+    document.getElementById("pagination-from").innerHTML = 1;
+  } else {
+    const last_page = Math.ceil(results.length / paginationSize);
+    const from = (page - 1) * paginationSize + 1;
+    var to = page * paginationSize;
+    if (to > results.length) to = results.length - 1;
+
+    Object.entries(results)
+      .slice(from, to + 1)
+      .forEach((hit, keys) => {
+        document.querySelector(".search-results ol").start = from;
+        document.querySelector(".search-results ol").innerHTML +=
+          `
+		<li class="search-result-item" data-score="` +
+          hit[1].score.toFixed(2) +
+          `">
+		  <a href="` +
+          hit[1].href +
+          `" target="_blank" rel="noopener" class="search-result-page-title">` +
+          hit[1].heading +
+          `</a>
+		  <p><small>` +
+          in_lbl +
+          `  <i>` +
+          hit[1].title +
+          `</i></small></p>
+		  <p>` +
+          createSearchResultBlurb(query, hit[1].content) +
+          `</p>
+		</li>
+		`;
+      });
+    document.getElementById("results-count").innerHTML = results.length - 1;
+    document.getElementById("results-count-text").innerHTML =
+      results.length > 1 ? "results" : "result";
+    document.getElementById("pagination-count").innerHTML = to;
+    document.getElementById("pagination-from").innerHTML = from;
+  }
 }
 
 function createSearchResultBlurb(query, pageContent) {
@@ -187,7 +258,9 @@ function createSearchResultBlurb(query, pageContent) {
           const startOfSentence = i > 0 ? sentenceBoundaries[i - 1] + 1 : 0;
           const endOfSentence = sentenceBoundaries[i];
           lastEndOfSentence = endOfSentence;
-          parsedSentence = pageContent.slice(startOfSentence, endOfSentence).trim();
+          parsedSentence = pageContent
+            .slice(startOfSentence, endOfSentence)
+            .trim();
           searchResultText += `${parsedSentence} ... `;
           break;
         }
@@ -213,9 +286,9 @@ function createQueryStringRegex(query) {
   }
   query = "";
   for (const term of searchTerms) {
-	  if(term != "AND" && term != "OR"){
-		query += `${term}|`;
-	  }
+    if (term != "AND" && term != "OR") {
+      query += `${term}|`;
+    }
   }
   query = query.slice(0, -1);
   return `(${query})`;
@@ -273,7 +346,8 @@ function showSearchResults() {
 
 function scrollToTop() {
   const toTopInterval = setInterval(function () {
-    const supportedScrollTop = document.body.scrollTop > 0 ? document.body : document.documentElement;
+    const supportedScrollTop =
+      document.body.scrollTop > 0 ? document.body : document.documentElement;
     if (supportedScrollTop.scrollTop > 0) {
       supportedScrollTop.scrollTop = supportedScrollTop.scrollTop - 50;
     }
@@ -283,13 +357,12 @@ function scrollToTop() {
   }, 10);
 }
 
-
 function handleClearSearchButtonClicked() {
-	document.getElementById("clearBtn").classList.add("hidden");
-	document.getElementById("results-header").classList.add("hidden");
+  document.getElementById("clearBtn").classList.add("hidden");
+  document.getElementById("results-header").classList.add("hidden");
   hideSearchResults();
   clearSearchResults();
-   document.getElementById("results-count").innerHTML = "";
+  document.getElementById("results-count").innerHTML = "";
   document.getElementById("results-count-text").innerHTML = "";
   document.getElementById("results-pagination").innerHTML = "";
 }
@@ -301,72 +374,66 @@ function hideSearchResults() {
 
 initSearchIndex();
 document.addEventListener("DOMContentLoaded", function () {
-		 
   let searchParams = new URLSearchParams(window.location.search);
-  let lang = searchParams.get('lang');
-  
+  let lang = searchParams.get("lang");
+
   if (document.getElementById("search-form") != null) {
     const searchInput = document.getElementById("search");
     searchInput.addEventListener("focus", () => searchBoxFocused());
     searchInput.addEventListener("keydown", (event) => {
       if (event.keyCode == 13) handleSearchQuery(event);
     });
-    
-   
   }
- 
-	let query = searchParams.get('q');
 
-	if(query != null)
-		query = query.trim();
-	let page = searchParams.get('page');
-	  if (!query) {
-		if(lang == "fr"){
-			displayErrorMessage("Veuillez saisir un terme de recherche.");
-		}else{
-			displayErrorMessage("Please enter a search term.");		
-					}
-		return;
-	  }
-	 
-	 
-	
-	if(query != null){
-		
-		 const results = searchSite(query);
-		  if (!results.length) {
-			if(lang == "fr"){
-					displayErrorMessage("Votre recherche n'a donné aucun résultat");
-				}else{
-					displayErrorMessage("Your search returned no results");	
-				}
-			return;
-		  }
-		  renderSearchResults(query, results, lang, page);
-	}
-  
+  let query = searchParams.get("q");
+
+  if (query != null) query = query.trim();
+  let page = searchParams.get("page");
+  if (!query) {
+    if (lang == "fr") {
+      displayErrorMessage("Veuillez saisir un terme de recherche.");
+    } else {
+      displayErrorMessage("Please enter a search term.");
+    }
+    return;
+  }
+
+  if (query != null) {
+    const results = searchSite(query);
+    if (!results.length) {
+      if (lang == "fr") {
+        displayErrorMessage("Votre recherche n'a donné aucun résultat");
+      } else {
+        displayErrorMessage("Your search returned no results");
+      }
+      return;
+    }
+    renderSearchResults(query, results, lang, page);
+  }
+
   document
     .querySelectorAll(".clear-search-results")
     .forEach((button) =>
       button.addEventListener("click", () => handleClearSearchButtonClicked())
     );
-	
-	document.getElementById("pagination_size_btn").addEventListener("click", function() {
-	  if(query != null){
-		 const results = searchSite(query);
-		  if (!results.length) {
-				
-				if(lang == "fr"){
-					displayErrorMessage("Votre recherche n'a donné aucun résultat");
-				}else{
-					displayErrorMessage("Your search returned no results");					
-				}
-				document.getElementById("search").value = query;
-				return;
-			  }
-		 renderSearchResults(query, results, lang, page);
-	}
-	});
+
+  document
+    .getElementById("pagination_size_btn")
+    .addEventListener("click", function () {
+      if (query != null) {
+        const results = searchSite(query);
+        if (!results.length) {
+          if (lang == "fr") {
+            displayErrorMessage("Votre recherche n'a donné aucun résultat");
+          } else {
+            displayErrorMessage("Your search returned no results");
+          }
+          document.getElementById("search").value = query;
+          return;
+        }
+        renderSearchResults(query, results, lang, page);
+      }
+    });
 });
 
 if (!String.prototype.matchAll) {
@@ -386,5 +453,3 @@ if (!String.prototype.matchAll) {
     return matchAll(this, regex);
   };
 }
-
-

@@ -1677,7 +1677,7 @@
 		dom.overlay.innerHTML = [
 			'<header>',
 				'<a class="close" href="#"><span class="icon"></span></a>',
-				'<a class="external" href="'+ url +'" target="_blank"><span class="icon"></span></a>',
+				'<a class="external" href="'+ url +'" target="_blank" rel="noopener"><span class="icon"></span></a>',
 			'</header>',
 			'<div class="spinner"></div>',
 			'<div class="viewport">',
