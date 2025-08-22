@@ -38,7 +38,7 @@ def update_file(filepath):
         print(f'No change: {filepath}')
 
 def main():
-    module1_dir = './learning/esdc-self-paced-document-accessibility-course/module1'
+    module1_dir = './learning/document-accessibility-course/module1'
     for filename in os.listdir(module1_dir):
         if filename.endswith('.html'):
             filepath = os.path.join(module1_dir, filename)
