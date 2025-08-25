@@ -38,7 +38,7 @@ def update_file(filepath):
 def main():
     module2_dir = './learning/document-accessibility-course/module2'
     for filename in os.listdir(module2_dir):
-        if filename.endswith('.html'):
+        if filename.endswith('.html') and not filename.endswith('-fr.html'):
             filepath = os.path.join(module2_dir, filename)
             update_file(filepath)
 
