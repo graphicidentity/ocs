@@ -3,12 +3,12 @@
   <head>
     <meta charset="utf-8" />
     <!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW) wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html -->
-    <title>iFrames – Module 2 - Page structure and semantics</title>
+    <title>Hyperlinks – Module 2 - Global Accessibility Techniques</title>
     <meta content="width=device-width,initial-scale=1" name="viewport" />
     <!-- Meta data -->
     <meta
       name="description"
-      content="Accessibility guidelines related to iFrames. This enables designers to embed any type of content from another web page."
+      content="Accessibility guidelines related to hyperlinks. This covers best practices for creating accessible links and hyperlink content."
     />
     <!-- Meta data-->
     <!-- Load closure template scripts -->
@@ -47,18 +47,18 @@
             href: "../index.html",
           },
           {
-            title: "Module 2 – Page structure and semantics",
+            title: "Module 2 – Global Accessibility Techniques",
 
             href: "index.html",
           },
           {
-            title: "IFrames",
+            title: "Hyperlinks",
           },
         ],
         lngLinks: [
           {
             lang: "fr",
-            href: "iframes-fr.html",
+            href: "hyperlinks-fr.html",
             text: "Français",
           },
         ],
@@ -70,19 +70,19 @@
         <div id="def-search"></div>
         <script src="../../../scripts/appSearch.js"></script>
         <main class="col-md-9 col-md-push-3" property="mainContentOfPage">
-          <h1 property="name" id="wb-cont">iFrames</h1>
+          <h1 property="name" id="wb-cont">Hyperlinks</h1>
           <nav aria-labelledby="nav-table" class="mrgn-tp-md">
             <h2 id="nav-table" class="wb-inv">Table of contents</h2>
             <details class="mrgn-bttm-lg on" open="open">
               <summary class="bg-info">Table of contents</summary>
               <ul>
                 <li>
-                  <a href="../module2/iframes.html#designing-iframes"
-                    >Designing with Iframes</a
+                  <a href="../module2/hyperlinks.html#designing-hyperlinks"
+                    >Designing with Hyperlinks</a
                   >
                 </li>
                 <li>
-                  <a href="../module2/iframes.html#resources-iframes"
+                  <a href="../module2/hyperlinks.html#resources-hyperlinks"
                     >Related WCAG resources</a
                   >
                 </li>
@@ -111,35 +111,35 @@
           </button>
 
           <section>
-            <h2 id="designing-iframes">Designing with iFrames</h2>
+            <h2 id="designing-hyperlinks">Designing with Hyperlinks</h2>
             <p>
-              Iframes enable designers to embed any type of content from another
-              web page.
+              Hyperlinks enable users to navigate between different sections of content and 
+              external web pages.
             </p>
             <p>
-              If the <code>&lt;iframe&gt;</code> consists of decorative images
-              or JavaScript, hide it from screen readers by setting the
+              If the hyperlink is purely decorative or for visual styling purposes, 
+              hide it from screen readers by setting the
               <code>aria-hidden="true"</code> attribute on the
-              <code>&lt;iframe&gt;</code> element.
+              <code>&lt;a&gt;</code> element.
             </p>
             <p>
-              If the <code>&lt;iframe&gt;</code> contains content intended for
+              If the hyperlink contains content intended for
               the user:
             </p>
             <ul>
               <li>
-                Give the <code>&lt;iframe&gt;</code> element a descriptive
-                <code>title</code> attribute value.
+                Give the hyperlink element descriptive
+                link text that clearly indicates the destination or purpose.
               </li>
               <li>
-                Ensure the <code>&lt;iframe&gt;</code>
-                <code>title</code> attribute value is unique across iframes on
+                Ensure the hyperlink
+                text is unique and meaningful across links on
                 the page.
               </li>
             </ul>
           </section>
           <section>
-            <h2 id="resources-iframes" class="wb-inv">
+            <h2 id="resources-hyperlinks" class="wb-inv">
               Related WCAG resources
             </h2>
             <details id="details-1" class="mrgn-tp-lg grouped on">
@@ -148,8 +148,14 @@
               <ul>
                 <li>
                   <a
-                    href="https://www.w3.org/WAI/WCAG21/Understanding/bypass-blocks"
-                    >2.4.1: Bypass Blocks</a
+                    href="https://www.w3.org/WAI/WCAG21/Understanding/link-purpose-in-context"
+                    >2.4.4: Link Purpose (In Context)</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="https://www.w3.org/WAI/WCAG21/Understanding/link-purpose-link-only"
+                    >2.4.9: Link Purpose (Link Only)</a
                   >
                 </li>
                 <li>
@@ -162,9 +168,13 @@
               <h3>Techniques</h3>
               <ul>
                 <li>
-                  <a href="https://www.w3.org/WAI/WCAG21/Techniques/html/H64"
-                    >H64: Using the title attribute of the frame and iframe
-                    elements</a
+                  <a href="https://www.w3.org/WAI/WCAG21/Techniques/html/H30"
+                    >H30: Providing link text that describes the purpose of a link</a
+                  >
+                </li>
+                <li>
+                  <a href="https://www.w3.org/WAI/WCAG21/Techniques/aria/ARIA8"
+                    >ARIA8: Using aria-label for link purpose</a
                   >
                 </li>
               </ul>
@@ -216,6 +226,9 @@
                 <a class="list-group-item" href="accessibleTemplates.html"
                   >Accessible Templates</a
                 >
+              </li>
+              <li>
+                <a class="list-group-item active" aria-current="page" href="hyperlinks.html">Hyperlinks</a>
               </li>
               <li>
                 <a class="list-group-item" href="textAndFonts.html">Text and Fonts</a>
