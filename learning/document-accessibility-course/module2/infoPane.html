@@ -131,73 +131,7 @@
               ARIA landmark <code>role</code> attributes.
             </p>
           </section>
-          <section>
-            <div class="panel panel-success mrgn-tp-lg">
-              <div class="panel-body">
-                <h2
-                  id="example-common-landmarks"
-                  class="text-success mrgn-tp-0 h3"
-                >
-                  <span class="glyphicon glyphicon-ok-circle"></span> Good
-                  example: Common landmarks
-                </h2>
-                <p>
-                  In this example, HTML5 sectioning elements define the
-                  landmarks for the most part. The
-                  <code>role="search"</code> attribute is unique and
-                  descriptive.
-                </p>
-                <div class="panel panel-primary mrgn-tp-md">
-                  <div class="panel-body mrgn-bttm-0">
-                    <p class="wb-inv" role="separator">Example begins</p>
-                    <img
-                      src="images/image1.png"
-                      class="img-responsive"
-                      alt=" Screenshot of landmark roles in their conventional locations. A header region holds nav and role=&#34;search&#34; landmarks. Below the header, left to right, are nav, main and aside landmarks. At the bottom is the footer landmark."
-                    />
-                    <p class="wb-inv" role="separator">Example ends</p>
-                  </div>
-                </div>
-                <p class="lang-label small">HTML</p>
-                <p class="wb-inv" role="separator">Code begins</p>
-                <pre
-                  class="mrgn-tp-0"
-                ><code class="language-html">&lt;header&gt;
-   &lt;nav aria-label="global"&gt;[…]&lt;/nav&gt;
-   &lt;form role="search"&gt;[…]&lt;/form&gt;
-&lt;/header&gt;
-&lt;div&gt;
-   &lt;nav aria-label="main"&gt;[…]&lt;/nav&gt;
-   &lt;main&gt;[…]&lt;/main&gt;
-   &lt;aside&gt;[…]&lt;/aside&gt;
-&lt;/div&gt;
-&lt;footer&gt;[…]&lt;/footer&gt;</code>
-</pre>
-                <p class="wb-inv" role="separator">Code ends</p>
-
-                <p>
-                  Below, the markup uses ARIA landmark role attributes to define
-                  the regions.
-                </p>
-                <p class="lang-label small">HTML</p>
-                <p class="wb-inv" role="separator">Code begins</p>
-                <pre
-                  class="mrgn-tp-0"
-                ><code class="language-html">&lt;div role="banner"&gt;
-   &lt;div role="navigation" aria-label="global"&gt;[…]&lt;/div&gt;
-   &lt;form role="search"&gt;[…]&lt;/form&gt;
-&lt;/div&gt;
-&lt;div&gt;
-   &lt;div role="navigation" aria-label="main"&gt;[…]&lt;/div&gt;
-   &lt;div role="main"&gt;[…]&lt;/div&gt;
-   &lt;div role="complementary"&gt;[…]&lt;/div&gt;
-&lt;/div&gt;
-&lt;div role="contentinfo"&gt;[…]&lt;/div&gt;</code>
-</pre>
-                <p class="wb-inv" role="separator">Code ends</p>
-              </div>
-            </div>
-          </section>
+         
           <section>
             <h2 id="regions-landmarks">Best practice for landmarks</h2>
             <ul>
