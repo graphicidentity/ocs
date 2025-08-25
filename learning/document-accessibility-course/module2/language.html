@@ -118,7 +118,6 @@
           </button>
 
           <section>
-            <h2 id="designing-landmarks">Language</h2>
             <p>
               Landmarks, also known as page regions, enable screen reader users
               to identify and navigate directly to important sections of a web
@@ -133,7 +132,7 @@
           </section>
 
           <section>
-            <h2 id="regions-landmarks">Best practice for landmarks</h2>
+            <h2 id="regions-landmarks">Language of Document</h2>
             <ul>
               <li>
                 Ensure all content on the page is contained within a landmark.
@@ -156,32 +155,6 @@
                   </li>
                   <li><code>&lt;footer&gt;</code></li>
                   <li><code>&lt;main&gt;</code></li>
-                </ul>
-              </li>
-              <li>
-                Ensure these landmarks are direct children of
-                <code>&lt;body&gt;</code>:
-                <ul>
-                  <li><code>&lt;header&gt;</code> (when the banner)</li>
-                  <li><code>&lt;footer&gt;</code></li>
-                  <li><code>&lt;main&gt;</code></li>
-                </ul>
-              </li>
-              <li>
-                Limit the use of <code>&lt;nav&gt;</code> to primary and
-                secondary navigations.
-                <ul>
-                  <li>
-                    Use the <code>aria-label</code> or
-                    <code>aria-labelledby</code> attribute to differentiate
-                    multiple <code>&lt;nav&gt;</code> items.
-                  </li>
-                  <li>
-                    Use the <code>aria-labelledby</code> attribute to label a
-                    <code>&lt;nav&gt;</code> region that begins with a heading
-                    element.
-                  </li>
-                  <li>Provide short and descriptive labels.</li>
                 </ul>
               </li>
               <li>
