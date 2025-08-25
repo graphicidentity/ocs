@@ -3,12 +3,12 @@
   <head>
     <meta charset="utf-8" />
     <!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW) wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html -->
-    <title>Lists – Module 2 - Page structure and semantics</title>
+    <title>Alt Text – Module 2 - Page structure and semantics</title>
     <meta content="width=device-width,initial-scale=1" name="viewport" />
     <!-- Meta data -->
     <meta
       name="description"
-      content="Accessibility guidelines related to lists. Describes how lists can be recognizable and navigable to screen reader users."
+      content="Accessibility guidelines for writing effective alt text for images and graphics. Explains why alt text is important and how to create meaningful descriptions for everyone."
     />
     <!-- Meta data-->
     <!-- Load closure template scripts -->
@@ -52,17 +52,16 @@
           },
           {
             title: "Module 2 – Page structure and semantics",
-
             href: "index.html",
           },
           {
-            title: "Lists",
+            title: "Alt Text",
           },
         ],
         lngLinks: [
           {
             lang: "fr",
-            href: "lists-fr.html",
+            href: "altText-fr.html",
             text: "Français",
           },
         ],
@@ -74,7 +73,7 @@
         <div id="def-search"></div>
         <script src="../../../scripts/appSearch.js"></script>
         <main class="col-md-9 col-md-push-3" property="mainContentOfPage">
-          <h1 property="name" id="wb-cont">Lists</h1>
+          <h1 property="name" id="wb-cont">Alt Text</h1>
 
           <nav aria-labelledby="nav-table" class="mrgn-tp-md">
             <h2 id="nav-table" class="wb-inv">Table of contents</h2>
@@ -82,57 +81,19 @@
               <summary class="bg-info">Table of contents</summary>
               <ul>
                 <li>
-                  <a href="../module2/lists.html#designing-lists"
-                    >Designing with lists</a
-                  >
+                  <a href="#why-alt-text">Why alt text matters</a>
                 </li>
                 <li>
-                  <a href="../module2/lists.html#unordered-list"
-                    >Unordered list</a
-                  >
+                  <a href="#writing-alt-text">Writing effective alt text</a>
                 </li>
                 <li>
-                  <a href="../module2/lists.html#ordered-list">Ordered list</a>
+                  <a href="#decorative-images">Decorative images</a>
                 </li>
                 <li>
-                  <a href="../module2/lists.html#nested-lists">Nested lists</a>
+                  <a href="#complex-images">Complex images and graphics</a>
                 </li>
                 <li>
-                  <a href="../module2/lists.html#description-list"
-                    >Description list</a
-                  >
-                  <ul>
-                    <li>
-                      <a
-                        href="../module2/lists.html#one-term-multiple-descriptions"
-                        >Good example 1: One term, multiple descriptions</a
-                      >
-                    </li>
-                    <li>
-                      <a
-                        href="../module2/lists.html#multiple-terms-one-description"
-                        >Good example 2: Multiple terms, one description</a
-                      >
-                    </li>
-                    <li>
-                      <a
-                        href="../module2/lists.html#multiple-terms-multiple-descriptions"
-                        >Good example 3: Multiple terms, multiple
-                        descriptions</a
-                      >
-                    </li>
-                    <li>
-                      <a
-                        href="../module2/lists.html#description-list-definition-lists"
-                        >Good example 4: Description list as definition list</a
-                      >
-                    </li>
-                  </ul>
-                </li>
-                <li>
-                  <a href="../module2/lists.html#resources-6"
-                    >Related WCAG resources</a
-                  >
+                  <a href="#resources-alt">Related WCAG resources</a>
                 </li>
               </ul>
             </details>
@@ -141,7 +102,7 @@
           <button
             type="button"
             class="btn btn-default wb-toggle wb-init wb-toggle-inited"
-            data-toggle="{&#x22;selector&#x22;: &#x22;.grouped&#x22;, &#x22;group&#x22;: &#x22;.grouped&#x22;, &#x22;type&#x22;: &#x22;on&#x22;}"
+            data-toggle='{"selector": ".grouped", "group": ".grouped", "type": "on"}'
             aria-controls="details-1"
             id="expandAllButton"
           >
@@ -151,7 +112,7 @@
             type="button"
             class="btn btn-default wb-toggle wb-init wb-toggle-inited"
             aria-controls="details-1 "
-            data-toggle="{&#x22;group&#x22;: &#x22;.grouped&#x22;, &#x22;type&#x22;: &#x22;off&#x22;}"
+            data-toggle='{"group": ".grouped", "type": "off"}'
             id="collapseAllButton"
             disabled="disabled"
           >
@@ -159,401 +120,162 @@
           </button>
 
           <section>
-            <h2 id="designing-lists">Designing with lists</h2>
+            <h2 id="why-alt-text">Why alt text matters</h2>
             <p>
-              When screen readers encounter a list, they declare useful
-              information sighted users realize at a glance: the presence of a
-              list and the number of items in the list. However, to be
-              recognizable and navigable to screen reader users, the list must
-              use the appropriate semantic markup.
+              Alternative text (“alt text”) is essential for ensuring that
+              images and graphics are accessible to everyone, including people
+              who use screen readers or have images turned off. Alt text
+              provides a concise description of an image’s meaning or function,
+              allowing users to understand content that is otherwise visual.
             </p>
             <p>
-              HTML provides three list structures, each with specific semantics:
+              Without appropriate alt text, users may miss critical information,
+              context, or instructions. Well-written alt text supports
+              accessibility, improves search engine optimization (SEO), and
+              aligns with WCAG guidelines for providing text alternatives.
+            </p>
+          </section>
+
+          <section>
+            <h2 id="writing-alt-text">Writing effective alt text</h2>
+            <p>
+              Good alt text is brief, descriptive, and communicates the purpose
+              of the image. Focus on what is important for understanding the
+              page, not on describing every detail. The alt text should answer:
+              “What does this image convey or accomplish?”
             </p>
             <ul>
               <li>
-                Use <strong>unordered lists</strong> (<code>&lt;ul&gt;</code>)
-                when the order of the items is irrelevant. Each list item
-                (<code>&lt;li&gt;</code>) in an unordered list is marked with a
-                bullet.
+                <strong>Descriptive:</strong> Describe the content and function.
+                For example, <code>alt="Submit button"</code>.
               </li>
               <li>
-                Use <strong>ordered lists</strong> (<code>&lt;ol&gt;</code>) for
-                sequential information. Each list item (<code>&lt;li&gt;</code>)
-                is numbered by the browser.
+                <strong>Concise:</strong> Keep alt text short (typically under
+                125 characters).
               </li>
               <li>
-                Use <strong>description lists</strong> (<code>&lt;dl&gt;</code>)
-                to group related terms (<code>&lt;dt&gt;</code>) and their
-                descriptions (<code>&lt;dd&gt;</code>).
+                <strong>Avoid redundancy:</strong> Do not repeat information
+                already provided in nearby text.
+              </li>
+              <li>
+                <strong>No “image of...” needed:</strong> Screen readers already
+                announce graphics as images.
+              </li>
+              <li>
+                <strong>Functional images:</strong> If the image is a link or
+                button, alt text should explain its action, e.g.,
+                <code>alt="Search"</code>.
               </li>
             </ul>
             <p>
-              Individual list items can contain a variety of HTML elements,
-              including paragraphs, headings, form elements, and other (nested)
-              lists -- any kind of “<a href="https://html.spec.whatwg.org/"
-                >flow content</a
-              >”.
-            </p>
-            <p>
-              Avoid nesting multiple child elements in each list item, since
-              screen reader users can lose track of the list itself.
-            </p>
-            <p>
-              Unordered lists are commonly used to hold horizontal and vertical
-              menus (for navigation, social media and list of links). Ordered
-              lists are commonly used for breadcrumbs.
-            </p>
-          </section>
-          <section>
-            <h2 id="unordered-list">Unordered list</h2>
-            <p>
-              The unordered list consists of one <code>&lt;ul&gt;</code> element
-              and multiple list item (<code>&lt;li&gt;</code>) elements:
+              <strong>Example:</strong>
             </p>
             <div class="panel panel-primary mrgn-tp-md">
               <div class="panel-body well mrgn-bttm-0">
-                <p class="wb-inv" role="separator">Example begins</p>
-                <ul>
-                  <li>Corn</li>
-                  <li>Tomatoes</li>
-                  <li>Beans</li>
-                  <li>Onions</li>
-                  <li>Garlic</li>
-                </ul>
-                <p class="wb-inv" role="separator">Example ends</p>
+                <img src="../../../images/search-icon.png" alt="Search" />
               </div>
             </div>
             <p class="lang-label small">HTML</p>
-            <p class="wb-inv" role="separator">Code begins</p>
-            <pre class="mrgn-tp-0"><code class="language-html">&lt;ul&gt;
-   &lt;li&gt;Corn&lt;/li&gt;
-   &lt;li&gt;Tomatoes&lt;/li&gt;
-   &lt;li&gt;Beans&lt;/li&gt;
-   &lt;li&gt;Onions&lt;/li&gt;
-   &lt;li&gt;Garlic&lt;/li&gt;
-&lt;/ul&gt;</code>
-</pre>
-            <p class="wb-inv" role="separator">Code ends</p>
+            <pre
+              class="mrgn-tp-0"
+            ><code class="language-html">&lt;img src="search-icon.png" alt="Search"&gt;</code></pre>
           </section>
-          <section>
-            <h2 id="ordered-list">Ordered list</h2>
-            <p>
-              The ordered list consists of one <code>&lt;ol&gt;</code> element
-              and multiple list item (<code>&lt;li&gt;</code>) elements:
-            </p>
-            <p>
-              Use ordered lists (<code>&lt;ol&gt;</code>) for sequential
-              information, when the order of the items is relevant. Each list
-              item (<code>&lt;li&gt;</code>) is numbered by the browser.
-            </p>
-            <div class="panel panel-primary mrgn-tp-md">
-              <div class="panel-body well mrgn-bttm-0">
-                <p class="wb-inv" role="separator">Example begins</p>
-                <ol>
-                  <li>Cook beans for 45 minutes.</li>
-                  <li>Cut vegetables in small cubes.</li>
-                  <li>Sauté onions and garlic.</li>
-                  <li>Deglaze using the tomatoes.</li>
-                  <li>Add corn and beans.</li>
-                </ol>
-                <p class="wb-inv" role="separator">Example ends</p>
-              </div>
-            </div>
-            <p class="lang-label small">HTML</p>
-            <p class="wb-inv" role="separator">Code begins</p>
 
-            <pre class="mrgn-tp-0"><code class="language-html">&lt;ol&gt;
-   &lt;li&gt;Cook beans for 45 minutes.&lt;/li&gt;
-   &lt;li&gt;Cut vegetables in small cubes.&lt;/li&gt;    
-   &lt;li&gt;Sauté onions and garlic.&lt;/li&gt;
-   &lt;li&gt;Deglaze using the tomatoes.&lt;/li&gt;
-   &lt;li&gt;Add corn and beans.&lt;/li&gt;
-&lt;/ol&gt;</code>
-</pre>
-            <p class="wb-inv" role="separator">Code ends</p>
-          </section>
           <section>
-            <h2 id="nested-lists">Nested lists</h2>
+            <h2 id="decorative-images">Decorative images</h2>
             <p>
-              Every list can be nested into another list. In the following
-              example, the order of preparation is not critical, but the
-              preparation itself should be done before using the ingredients.
-              The information is still easy to digest, assistive technology can
-              easily inform users about the number of steps.
+              Images that do not convey information or meaning can be marked as
+              decorative. Use an empty alt attribute (<code>alt=""</code>) so
+              that assistive technologies ignore them.
             </p>
             <div class="panel panel-primary mrgn-tp-md">
               <div class="panel-body well mrgn-bttm-0">
-                <p class="wb-inv" role="separator">Example begins</p>
-                <ol>
-                  <li>
-                    Prepare ingredients
-                    <ul>
-                      <li>Cook beans for 45 minutes.</li>
-                      <li>Cut vegetables in small cubes.</li>
-                    </ul>
-                  </li>
-                  <li>Sauté onions and garlic.</li>
-                  <li>Deglaze using the tomatoes.</li>
-                  <li>Add corn and beans.</li>
-                </ol>
-                <p class="wb-inv" role="separator">Example ends</p>
+                <img src="../../../images/curve.png" alt="" />
               </div>
             </div>
             <p class="lang-label small">HTML</p>
-            <p class="wb-inv" role="separator">Code begins</p>
-            <pre class="mrgn-tp-0"><code class="language-html">&lt;ol&gt;
-   &lt;li&gt;Prepare ingredients
-      &lt;ul&gt;
-         &lt;li&gt;Cook beans for 45 minutes.&lt;/li&gt;
-         &lt;li&gt;Cut vegetables in small cubes.&lt;/li&gt;
-      &lt;/ul&gt; 
-   &lt;/li&gt;
-   &lt;li&gt;Sauté onions and garlic.&lt;/li&gt;
-   &lt;li&gt;Deglaze using the tomatoes.&lt;/li&gt;
-   &lt;li&gt;Add corn and beans.&lt;/li&gt;
-&lt;/ol&gt;</code>
-</pre>
-            <p class="wb-inv" role="separator">Code ends</p>
+            <pre
+              class="mrgn-tp-0"
+            ><code class="language-html">&lt;img src="curve.png" alt=""&gt;</code></pre>
           </section>
-          <section>
-            <h2 id="description-list">Description list</h2>
-            <p>
-              A description list consists of one or more term and description
-              groupings. Each grouping associates one or more terms (the
-              contents of <code>&lt;dt&gt;</code> elements) with one or more
-              descriptions (the contents of <code>&lt;dd&gt;</code> elements).
-            </p>
-            <p>
-              A grouping begins either on the first item of the list or whenever
-              a <code>&lt;dt&gt;</code> element follows an
-              <code>&lt;dd&gt;</code> element.
-            </p>
-            <div class="panel panel-success mrgn-tp-lg">
-              <div class="panel-body">
-                <h3
-                  id="one-term-multiple-descriptions"
-                  class="text-success mrgn-tp-0 h3"
-                >
-                  <span class="glyphicon glyphicon-ok-circle"></span> Good
-                  example 1: One term, multiple descriptions
-                </h3>
-                <p>
-                  In the following example, John and Luke are described as
-                  authors, and Frank is described as editor.
-                </p>
-                <div class="panel panel-primary mrgn-tp-md">
-                  <div class="panel-body well mrgn-bttm-0">
-                    <p class="wb-inv" role="separator">Example begins</p>
-                    <dl>
-                      <dt>Authors</dt>
-                      <dd class="mrgn-lft-lg">John</dd>
-                      <dd class="mrgn-lft-lg">Luke</dd>
-                      <dt>Editor</dt>
-                      <dd class="mrgn-lft-lg">Frank</dd>
-                    </dl>
-                    <p class="wb-inv" role="separator">Example ends</p>
-                  </div>
-                </div>
-                <p class="lang-label small">HTML</p>
-                <p class="wb-inv" role="separator">Code begins</p>
-                <pre class="mrgn-tp-0"><code class="language-html">&lt;dl&gt;  
-   &lt;dt&gt;Authors&lt;/dt&gt;
-   &lt;dd&gt;John&lt;/dd&gt;  
-   &lt;dd&gt;Luke&lt;/dd&gt;
-   &lt;dt&gt;Editor&lt;/dt&gt;  
-   &lt;dd&gt;Frank&lt;/dd&gt;
-&lt;/dl&gt;</code></pre>
-                <p class="wb-inv" role="separator">Code ends</p>
-                <p class="lang-label small">CSS</p>
-                <p class="wb-inv" role="separator">Code begins</p>
-                <pre
-                  class="mrgn-tp-0"
-                ><code class="language-css">dt { font-weight: 700; }
-dd { margin-left: 30px; }</code></pre>
-                <p class="wb-inv" role="separator">Code ends</p>
-              </div>
-            </div>
-            <div class="panel panel-success mrgn-tp-lg">
-              <div class="panel-body">
-                <h3
-                  id="multiple-terms-one-description"
-                  class="text-success mrgn-tp-0 h3"
-                >
-                  <span class="glyphicon glyphicon-ok-circle"></span> Good
-                  example 2: Multiple terms, one description
-                </h3>
-                <p>In this example, Ian is both a producer and director.</p>
-                <div class="panel panel-primary mrgn-tp-md">
-                  <div class="panel-body well mrgn-bttm-0">
-                    <p class="wb-inv" role="separator">Example begins</p>
-                    <dl>
-                      <dt>Producer</dt>
-                      <dt>Director</dt>
-                      <dd class="mrgn-lft-lg">Ian</dd>
-                      <dt>Writer</dt>
-                      <dd class="mrgn-lft-lg">Annie</dd>
-                    </dl>
-                    <p class="wb-inv" role="separator">Example ends</p>
-                  </div>
-                </div>
-                <p class="lang-label small">HTML</p>
-                <p class="wb-inv" role="separator">Code begins</p>
-                <pre class="mrgn-tp-0"><code class="language-html">&lt;dl&gt;
-   &lt;dt&gt;Producer&lt;/dt&gt; 
-   &lt;dt&gt;Director&lt;/dt&gt;
-   &lt;dd&gt;Ian&lt;/dd&gt;  
-   &lt;dt&gt;Writer&lt;/dt&gt;
-   &lt;dd&gt;Annie&lt;/dd&gt;
-&lt;/dl&gt;</code></pre>
-                <p class="wb-inv" role="separator">Code ends</p>
-                <p class="lang-label small">CSS</p>
-                <p class="wb-inv" role="separator">Code begins</p>
-                <pre
-                  class="mrgn-tp-0"
-                ><code class="language-css">dt { font-weight: 700; }
-dd { margin-left: 30px; }</code></pre>
-                <p class="wb-inv" role="separator">Code ends</p>
-              </div>
-            </div>
-            <div class="panel panel-success mrgn-tp-lg">
-              <div class="panel-body">
-                <h3
-                  id="multiple-terms-multiple-descriptions"
-                  class="text-success mrgn-tp-0 h3"
-                >
-                  <span class="glyphicon glyphicon-ok-circle"></span> Good
-                  example 3: Multiple terms, multiple descriptions
-                </h3>
-                <p>
-                  In this example, John and Luke are authors and also editors:
-                </p>
-                <div class="panel panel-primary mrgn-tp-md">
-                  <div class="panel-body well mrgn-bttm-0">
-                    <p class="wb-inv" role="separator">Example begins</p>
-                    <dl>
-                      <dt>Authors</dt>
-                      <dt>Editors</dt>
-                      <dd class="mrgn-lft-lg">John</dd>
-                      <dd class="mrgn-lft-lg">Luke</dd>
-                    </dl>
-                    <p class="wb-inv" role="separator">Example ends</p>
-                  </div>
-                </div>
-                <p class="lang-label small">HTML</p>
-                <p class="wb-inv" role="separator">Code begins</p>
-                <pre class="mrgn-tp-0"><code class="language-html">&lt;dl&gt;
-   &lt;dt&gt;Authors&lt;/dt&gt; 
-   &lt;dt&gt;Editors&lt;/dt&gt;
-   &lt;dd&gt;John&lt;/dd&gt;  
-   &lt;dd&gt;Luke&lt;/dd&gt;
-&lt;/dl&gt;</code></pre>
-                <p class="wb-inv" role="separator">Code ends</p>
-                <p class="lang-label small">CSS</p>
-                <p class="wb-inv" role="separator">Code begins</p>
-                <pre
-                  class="mrgn-tp-0"
-                ><code class="language-css">dt { font-weight: 700; }
-dd { margin-left: 30px; }</code></pre>
-                <p class="wb-inv" role="separator">Code ends</p>
-              </div>
-            </div>
 
-            <div class="panel panel-success mrgn-tp-lg">
-              <div class="panel-body">
-                <h3
-                  id="description-list-definition-lists"
-                  class="text-success mrgn-tp-0 h3"
-                >
-                  <span class="glyphicon glyphicon-ok-circle"></span> Good
-                  example 4: Description list as definition list
-                </h3>
-                <p>
-                  When using a description list to define terms, nest the term
-                  in a <code>&lt;dfn&gt;</code> element. In this example, two
-                  different spellings of a word are defined.
+          <section>
+            <h2 id="complex-images">Complex images and graphics</h2>
+            <p>
+              For charts, diagrams, infographics, or other complex images,
+              provide a brief alt text and a longer text description elsewhere
+              on the page. The alt text should summarize the main point, while a
+              nearby caption or linked description explains details.
+            </p>
+            <div class="panel panel-primary mrgn-tp-md">
+              <div class="panel-body well mrgn-bttm-0">
+                <img
+                  src="../../../images/bar-chart.png"
+                  alt="Bar chart showing sales growth from 2021 to 2023"
+                />
+                <p id="chart-description" class="mrgn-tp-sm">
+                  Sales increased steadily from 2021 ($1M) to 2023 ($2.5M), with
+                  the highest growth in Q2 2023.
                 </p>
-                <div class="panel panel-primary mrgn-tp-md">
-                  <div class="panel-body well mrgn-bttm-0">
-                    <p class="wb-inv" role="separator">Example begins</p>
-                    <dl>
-                      <dt><dfn lang="en-US">color</dfn></dt>
-                      <dt><dfn lang="en-GB">colour</dfn></dt>
-                      <dd class="mrgn-lft-lg">
-                        A sensation which (in humans) derives from the ability
-                        of the fine structure of the eye to distinguish three
-                        differently filtered analyses of a view.
-                      </dd>
-                    </dl>
-                    <p class="wb-inv" role="separator">Example ends</p>
-                  </div>
-                </div>
-                <p class="lang-label small">HTML</p>
-                <p class="wb-inv" role="separator">Code begins</p>
-                <pre class="mrgn-tp-0"><code class="language-html">&lt;dl&gt;   
-   &lt;dt&gt;&lt;dfn lang="en-US"&gt;color&lt;/dfn&gt;&lt;/dt&gt;
-   &lt;dt&gt;&lt;dfn lang="en-GB"&gt;colour&lt;/dfn&gt;&lt;/dt&gt;
-   &lt;dd&gt;A sensation which (in humans) derives from the ability of the fine structure of the eye to distinguish three differently filtered analyses of a view.&lt;/dd&gt;
-&lt;/dl&gt;</code></pre>
-                <p class="wb-inv" role="separator">Code ends</p>
-                <p class="lang-label small">CSS</p>
-                <p class="wb-inv" role="separator">Code begins</p>
-                <pre
-                  class="mrgn-tp-0"
-                ><code class="language-css">dt { font-weight: 700; }
-dd { margin-left: 30px; }</code></pre>
-                <p class="wb-inv" role="separator">Code ends</p>
               </div>
             </div>
+            <p class="lang-label small">HTML</p>
+            <pre
+              class="mrgn-tp-0"
+            ><code class="language-html">&lt;img src="bar-chart.png" alt="Bar chart showing sales growth from 2021 to 2023" aria-describedby="chart-description"&gt;
+&lt;p id="chart-description"&gt;Sales increased steadily from 2021 ($1M) to 2023 ($2.5M), with the highest growth in Q2 2023.&lt;/p&gt;</code></pre>
           </section>
+
           <section>
-            <h2 id="resources-6" class="wb-inv">Related WCAG resources</h2>
+            <h2 id="resources-alt" class="wb-inv">Related WCAG resources</h2>
             <details id="details-1" class="mrgn-tp-lg grouped on">
               <summary class="bg-info">Related WCAG resources</summary>
               <h3>Success criteria</h3>
               <ul>
                 <li>
                   <a
-                    href="https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships"
-                    >1.3.1: Info and Relationships</a
+                    href="https://www.w3.org/WAI/WCAG21/Understanding/text-alternatives"
+                    >1.1.1: Text Alternatives</a
                   >
                 </li>
               </ul>
               <h3>Techniques</h3>
               <ul>
                 <li>
-                  <a href="https://www.w3.org/WAI/WCAG21/Techniques/html/H48"
-                    >H48: Using ol, ul and dl for lists or groups of links</a
+                  <a href="https://www.w3.org/WAI/WCAG21/Techniques/html/H37"
+                    >H37: Using alt attributes on images</a
+                  >
+                </li>
+                <li>
+                  <a href="https://www.w3.org/WAI/WCAG21/Techniques/html/H67"
+                    >H67: Using null alt text and no title attribute for
+                    decorative images</a
                   >
                 </li>
               </ul>
             </details>
             <hr />
             <p class="small">
-              The description of the three list types is from the Web
+              The guidance for writing alt text is adapted from the Web
               Accessibility Initiative (<a href="https://www.w3.org/WAI/">WAI</a
-              >) document:
-              <a href="https://www.w3.org/WAI/tutorials/page-structure/content/"
-                >Content Structure <span class="wb-inv"> (WAI)</span></a
+              >) documents:
+              <a href="https://www.w3.org/WAI/tutorials/images/"
+                >Images Tutorial <span class="wb-inv"> (WAI)</span></a
               >
               in the
-              <a href="https://www.w3.org/WAI/tutorials/page-structure/"
-                >Page Structure Tutorial</a
-              >
-              of the
               <a href="https://www.w3.org/WAI/tutorials/"
                 >Web Accessibility Tutorials</a
-              >. Eric Eggert, Shadi Abou-Zahra, eds. Copyright © 2019 W3C® (<a
-                href="https://www.csail.mit.edu/"
+              >. Copyright © 2019 W3C® (<a href="https://www.csail.mit.edu/"
                 >MIT</a
               >, <a href="http://www.ercim.eu/">ERCIM</a>,
               <a href="https://www.keio.ac.jp/">Keio</a>). Status: Updated 27
               July 2019.
-              <a href="https://www.w3.org/WAI/tutorials/page-structure/content/"
-                >https://www.w3.org/WAI/tutorials/page-structure/content/</a
+              <a href="https://www.w3.org/WAI/tutorials/images/"
+                >https://www.w3.org/WAI/tutorials/images/</a
               >
             </p>
           </section>
+
           <nav aria-labelledby="nav-pagination">
             <h2 id="nav-pagination" class="wb-inv">Pagination menu</h2>
             <ul class="pager">
@@ -590,23 +312,34 @@ dd { margin-left: 30px; }</code></pre>
 
             <ul class="list-group menu list-unstyled">
               <li>
-                <a class="list-group-item href" href="infoPane.html">Info Pane</a>
-              </li>
-			<li>
-                <a class="list-group-item href" href="accessibleTemplates.html">Accessible Templates</a>
-              </li>
-			<li>
-                <a class="list-group-item href" href="language.html">Language</a>
+                <a class="list-group-item href" href="infoPane.html"
+                  >Info Pane</a
+                >
               </li>
               <li>
-                <a class="list-group-item" href="textAndFonts.html">Text and Fonts</a>
+                <a class="list-group-item href" href="accessibleTemplates.html"
+                  >Accessible Templates</a
+                >
+              </li>
+              <li>
+                <a class="list-group-item href" href="language.html"
+                  >Language</a
+                >
+              </li>
+              <li>
+                <a class="list-group-item" href="textAndFonts.html"
+                  >Text and Fonts</a
+                >
               </li>
               <li>
                 <a class="list-group-item" href="hyperlinks.html">Hyperlinks</a>
               </li>
               <li>
                 <a
-                  class="list-group-item active" aria-current="page" href="altText.html">Alt Text</a
+                  class="list-group-item active"
+                  aria-current="page"
+                  href="altText.html"
+                  >Alt Text</a
                 >
               </li>
               <li>
